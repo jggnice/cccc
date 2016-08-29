@@ -1,0 +1,7 @@
+ #define MAX 10001 using namespace std; int main(int argc,char *argv[]) { int n,sum,temp; int max,flag=1; int Array[MAX]; int i,j,begin,end; scanf("%d",&n); for(i=0;i＜n;i++) { scanf("%d",&Array[i]); if(Array[i]>=0) flag=0; } max=sum=Array[0]; begin=end=temp=0; for(i=1;i＜n;i++) { if(summax) { max=sum; begin=temp; end=i; } } if(flag) printf("%d %d %d\n",0,Array[0],Array[n-1]); else printf("%d %d %d\n",max,Array[begin],Array[end]); return 0; } 
+ 非常短，而且一眼就看出算法复杂度是O( n )级别的。
+ 我们用i表示子序列的起始下标，j 表示子序列的终止下标。
+ 原理是，当我们得到一个子序列，如果子序列的第一个数是非正数，那么可以舍去，即i++
+ 当一个子序列的前n个元素和为非正数时，是否也可以舍去呢？答案是可以的。
+ 假设k 是i到j中任意一个下标。Sum( a, b ) 表示子序列第a个元素到第b个元素之和。由于加到第j个元素，子序列才开始为负数，所以Sum( i, k ) > 0，Sum( i, k ) + Sum( k, j ) = Sum( i, j ) ,所以Sum( k, j ) ＜ Sum( i, j ) ＜ 0
+ 所以如果把 k到j的序列附加到j之后的序列上，只会使序列越来越小。所以i到j的序列都可以舍去。

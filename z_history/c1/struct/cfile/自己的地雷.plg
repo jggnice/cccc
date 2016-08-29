@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 自己的地雷 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "D:\Image\RSP33A0.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/自己的地雷.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\cccc\history\c1\struct\cfile\自己的地雷.c"
+]
+Creating command line "cl.exe @D:\Image\RSP33A0.tmp" 
+Creating temporary file "D:\Image\RSP33A1.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/自己的地雷.pdb" /debug /machine:I386 /out:"Debug/自己的地雷.exe" /pdbtype:sept 
+".\Debug\自己的地雷.obj"
+]
+Creating command line "link.exe @D:\Image\RSP33A1.tmp"
+<h3>Output Window</h3>
+Compiling...
+自己的地雷.c
+d:\cccc\history\c1\struct\cfile\自己的地雷.c(88) : warning C4013: 'getch' undefined; assuming extern returning int
+Linking...
+
+
+
+<h3>Results</h3>
+自己的地雷.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
