@@ -1,0 +1,84 @@
+. Matlab中求解线性规划主要命令是______  
+  fmincon  
+  linprog  
+  quadprog  
+  fminunc  
+2. Matlab中求解二次规划主要命令是______  
+  fmincon  
+  linprog  
+  quadprog  
+  fminunc  
+3. Matlab中求解约束中具有二次函数的规划问题的主要命令是_______  
+  linprog  
+  quadprog  
+  fminunc  
+  fmincon  
+4. 初值的选取会影响下列4个函数中_____个函数的最优解所对应的函数值。
+①linprog ②quadprog ③fminunc ④ fmincon  
+  3  
+  4  
+  1  
+  2  
+5. LINGO软件的注释语句______.  
+  以符号 ! 开始, 仍以符号 ! 结束  
+  以符号 ! 开始, 无结束符号  
+  以符号 % 开始, 无结束符号  
+  以符号 ! 开始, 以符号 ; 结束  
+6. LINGO软件中，目标、约束和说明语句必须以______结束.  
+  符号 %  
+  符号 ;  
+  符号 '  
+  符号 ! 
+7. 在LINGO软件中，以下叙述正确的是______.  
+  一个语句可以分开写在不同行中, 多个语句可以写在同一行中  
+  一个语句必须写在同一行中, 一行中只能写一个语句  
+  一个语句可以分开写在不同行中, 一行中至多只能写一个语句  
+  一个语句必须写在同一行中, 多个语句可以写在同一行中  
+8. 在LINGO软件中，以下叙述正确的有______.
+① 约束的名字放到 [ ] 中 ② 默认每个变量是大于等于0的
+③ 约束中 > 号表示的是 >=  
+  ②  
+  ③  
+  ①②③  
+  ②③  
+9. 在LINGO软件中，集合段的定义以_____开始，以_______结束.  
+  “sets:”、“endsets”  
+  “set”、“endset”  
+  “sets:”、“endsets;”  
+  “sets”、“endsets”  
+
+10. 在LINGO软件中，缺省假设所有变量都是非负的，要解除决策变量x1的非负限制，应该用如下语句______.  
+  @free;  
+  @free(x1);  
+  free;  
+  free(x1);  
+11. 用LINGO软件求解非线性规划时，缺省假设是求______，输出显示“Local optimal solution found”的意思是______.  
+  局部最优解，找到最优解  
+  全局最优解，找到局部最优解  
+  局部最优解，找到局部最优解  
+  全局最优解，找到最优解  
+12. 用LINGO软件求解非线性规划时，若要找全局最优缺，则应在求解前先运行______进行设置.  
+  Window |Status Window→Global Solver中选择Use Global Solver  
+  LINGO|Options→Global Solver中选择Use Global Solver  
+  Window|Options→Global Solver中选择Use Global Solver  
+  LINGO|Solve→Global Solver中选择Use Global Solver  
+ 
+13. 在LINGO软件中，要设置决策变量x1是整数变量，应该用如下语句______.  
+  @bin(x1);  
+  @gin(x1);  
+  gin(x1);  
+  bin(x1);  
+14. 有如下LINGO程序段： 
+SETS:
+ABC/1..3/:A,B;
+ENDSETS
+DATA:
+A = 1 2 3 ; 
+B = 2 3 8 ;
+ENDDATA
+C = @SUM(ABC(J):A(J)*B(J));
+则C = ______.  
+  19  
+  54  
+  24  
+  32  

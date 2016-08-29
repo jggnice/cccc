@@ -1,0 +1,38 @@
+
+
+1. 对如下约束优化问题，它的最合适的分类是____：
+min z = 3*x1 + 3*x2;
+s.t. x1^2 + x2^2 < = 1
+x1, x2 > 0  
+  非线性最小二乘  
+  线性规划  
+  非线性规划  
+  二次规划  
+2. Matlab中属于优化工具箱的命令有________
+①fzero ②linprog ③fminunc ④fmincon ⑤fminsearch  
+  ③  
+  ①②③④⑤  
+  ②③④⑤  
+  ③④⑤  
+3. Matlab中求解无约束优化的主要命令有________
+①fzero ②linprog ③fminunc ④fmincon ⑤fminsearch  
+  ③④⑤  
+  ①②③④⑤  
+  ③  
+  ③⑤  
+
+4. Matlab中进行非线性最小二乘的命令是________  
+  lsqlin  
+  nonlinlsq  
+  lsqnonlin  
+  linprog  
+5. Matlab中用无约束优化命令得到的的第1个返回值是________  
+  全局最优解  
+  最小值  
+  极小值  
+  局部最优解  
+6. Matlab中用无约束优化命令得到的的第2个返回值是________  
+  全局最优解  
+  最小值  
+  极小值  
+  局部最优解  
