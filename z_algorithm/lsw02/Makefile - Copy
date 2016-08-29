@@ -1,0 +1,6 @@
+lsw02:		lsw02.o lsw02f.o
+		gcc -o lsw02 lsw02.o lsw02f.o
+lsw02.o:		lsw02.c lsw02f.o
+		gcc -c lsw02.c
+lsw02f.o:		lsw02f.c lsw02.h
+		gcc -c lsw02f.c
