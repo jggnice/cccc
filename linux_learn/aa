@@ -1,0 +1,13 @@
+http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.rpm
+
+按照 TeX Live 手册的说明，安装之后，还有一些工作需要做：
+
+    如果在安装时没有选择在系统目录为可执行文件创建符号链接，就需要手工修改 ~/.profile 文件设置 PATH 环境变量。
+    XeTeX 会使用 fontconfig 库来通过字体名搜索字体。TeX Live 的字体目录默认并不在 fongconfig 的搜索目录之列，因此需要按文档要求，将 TeX Live 安装目录下的 texmf-var/fonts/conf/texlive-fontconfig.conf 文件，复制到 /etc/fonts/conf.d/09-texlive.conf，然后运行 fc-cache，以确保 XeTeX 能搜索到字体。否则，TeX Live 自带的 OpenType 字体就只能以字体文件名的方式调用，非常不便。此外这样也能让系统的其他软件使用 TeX Live 安装的字体。
+    如果需要以字体文件名调用 Linux 系统安装的字体，例如使用 CJK 宏包调用来自 Windows 的字体，那么还需要修改 TeX Live 安装目录的 texmf.cnf 文件，在其中设置 OSFONTDIR 变量，例如：OSFONTDIR = ~/.fonts//;/usr/share/fonts//;/usr/share/fonts-droid//
+
+    当然，这一步骤对多数用户的用处并不大。
+
+    下面，我们来谈谈 Linux 发行版中包管理器的依赖问题。Linux 发行版中，有不少软件都依赖 TeX 系统来生成文档，要安装这些软件就会自动根据依赖关系安装 Linux 发行版的软件源中的 texlive 相关包。这不仅会占用一些无谓的空间，而且如果没有正确设置 PATH 路径或符号链接的优先级次序，还可能造成安装了新版本的 TeX Live 却仍调用旧版本的问题。比较好的解决方式是建立一个虚拟软件包，告诉包管理器所有 TeX Live 相关的包都已经安装好了，不必再安装一遍。例如对于 Debian（Ubuntu 也适用），可以按官网上的说明（Debian support）来制做 dummy package 并安装。我事先做好了一份 .deb 包 texlive-local_2015-1_all.deb，有需要的用户可以下载使用。
+
+    在 Linux 发行版中安装 TeX Live，并不会同时安装专门的 TeX 编辑器。因此还需要单独安装 TeX 编辑器。按上面的方法解决了包管理器的依赖问题后，就可以直接从 Linux 发行版的软件源中安装需要的编辑器。初学者可以使用 TeXworks，有经验的用户则可以用 TeXstudio、Kile 等编辑器。当然，熟悉 VIM 或 Emacs 的用户，也可以尽情配置自己的专属编辑器用于 TeX 编辑。
