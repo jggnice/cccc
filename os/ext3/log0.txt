@@ -1,0 +1,13 @@
+      s_inodes_count  :  10240
+      s_blocks_count  :  40960
+    s_r_blocks_count  :  2048
+ s_free_blocks_count  :  39156
+ s_free_inodes_count  :  10213
+  s_first_data_block  :  1
+    s_log_block_size  :  0
+  s_blocks_per_group  :  8192
+             s_mtime  :  0
+             s_wtime  :  1369782880
+         s_mnt_count  :  3
+             s_magic  :  ef53
+         block group  :  5

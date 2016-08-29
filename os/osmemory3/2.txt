@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <limits.h>
+
+#define MAX_NUM 10001
+
+static int total_number_of_jobs;
+
+static void shell_sort_start_time(int job_time[MAX_NUM][2], int n) {
+    int group, i, j, temp1, temp2;
+    for(group = n / 2; group > 0; group /= 2) {
+        for(i = group; i < n; i++) {
+            for(j = i - group; j >= 0; j -= group) {
+                if(job_time[j][0] > job_time[j + group][0]) {
+                    temp1 = job_time[j][0];
+                    temp2 = job_time[j][1];
+
+                    job_time[j][0] = job_time[j + group][0];
+                    job_time[j][1] = job_time[j + group][1];
+
+                    job_time[j + group][0] = temp1;
+                    job_time[j + group][1] = temp2;
+                }
+            }
+        }
+    }
+}
+
+static int data_read(int job_time[MAX_NUM][2]) {
+    FILE *input = fopen("Z:\\data.txt", "r");
+    if(input == NULL) {
+        fprintf(stderr, "Can't open file!");
+        exit(1);
+    }
+
+    fscanf(input, "%d", &total_number_of_jobs);
+    for(int i = 0; i < total_number_of_jobs; i++) {
+        fscanf(input, "%d", &job_time[i][0]);
+        fscanf(input, "%d", &job_time[i][1]);
+    }
+
+    fclose(input);
+    return 1;
+}
+
+static void data_print(int job_time[MAX_NUM][2]) {
+    for(int i = 0; i < total_number_of_jobs; i++) {
+        printf("%d %d\n", job_time[i][0], job_time[i][1]);
+    }
+}
+
+static void array_copy(int job_time[MAX_NUM][2], int new_job_time[MAX_NUM][2]) {
+    for(int i = 0; i < total_number_of_jobs; i++) {
+        new_job_time[i][0] = job_time[i][0];
+        new_job_time[i][1] = job_time[i][1];
+    }
+}
+
+static void average_turnover_time_short(int job_time[MAX_NUM][2]) {
+    int result_array[MAX_NUM], start_time[MAX_NUM], end_time[MAX_NUM];
+    int temp_job_time[MAX_NUM][2];
+    int min_running_time, min_running_time_pos;
+    double result1 = 0, result2 = 0;
+
+    FILE *output1 = fopen("Z:\\testLog.txt", "w");
+    FILE *output2 = fopen("Z:\\testLog2.txt", "w");
+
+    array_copy(job_time, temp_job_time);
+    shell_sort_start_time(temp_job_time, total_number_of_jobs);
+
+    int temp = 0;
+    for(int i = 0; i < total_number_of_jobs; i++)
+        temp += temp_job_time[i][1];
+
+    printf("total:%d\n", temp);
+
+    start_time[0] = temp_job_time[0][0];
+    end_time[0] = start_time[0] + temp_job_time[0][1];
+    fprintf(output1, "start_time: %d, end_time: %d\n", start_time[0], end_time[0]);
+    fprintf(output2, "%d %d\n", temp_job_time[0][0], temp_job_time[0][1]);
+    for(int i = 1; i < total_number_of_jobs; i++) {
+        start_time[i] = end_time[i - 1];
+        end_time[i] = start_time[i] + temp_job_time[i][1];
+        fprintf(output1, "start_time: %d, end_time: %d\n", start_time[i], end_time[i]);
+        fprintf(output2, "%d %d\n", temp_job_time[i][0], temp_job_time[i][1]);
+    }
+
+    fclose(output1);
+    fclose(output2);
+
+    for(int i = 0; i < total_number_of_jobs; i++) {
+        result_array[i] = end_time[i] - temp_job_time[i][0];
+        result1 += result_array[i];
+    }
+
+    result1 = result1 / total_number_of_jobs;
+
+    // shell_sort_running_time(temp_job_time, total_number_of_jobs);
+    start_time[0] = temp_job_time[0][0];
+    end_time[0] = start_time[0] + temp_job_time[0][1];
+    for(int i = 1; i < total_number_of_jobs; i++) {
+        min_running_time = INT_MAX;
+        for(int j = 1; j < total_number_of_jobs; j++) {
+            if(temp_job_time[j][0] <= end_time[i - 1]) {
+                if(min_running_time > temp_job_time[j][1]) {
+                    min_running_time = temp_job_time[j][1];
+                    min_running_time_pos = j;
+                }
+            }
+        }
+
+        start_time[i] = end_time[i - 1];
+        end_time[i] = start_time[i] + temp_job_time[min_running_time_pos][1];
+        result_array[i] = end_time[i] - temp_job_time[min_running_time_pos][0];
+        result2 += result_array[i];
+        temp_job_time[min_running_time_pos][0] = INT_MAX;
+    }
+
+    result2 = (result2 + end_time[0] - start_time[0]) / total_number_of_jobs;
+
+    printf("%f %f", result1, result2);
+}
+
+int main(void) {
+    int job_time[MAX_NUM][2] = {0};
+    data_read(job_time);
+    //shell_sort_start_time(job_time, total_number_of_jobs);
+    // data_print(job_time);
+    average_turnover_time_short(job_time);
+    return 0;
+}
